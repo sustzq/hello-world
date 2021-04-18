@@ -1,11 +1,14 @@
 #!/bin/bash
-\cp -rf /root/.jenkins/workspace/hello-world/target/demo-0.0.1-SNAPSHOT.jar /data/javaproject/hello-world/
-ps -ef | grep demo-0.0.1-SNAPSHOT.jar | grep -v grep | cut -c 9-15 | xargs kill -9
+cd /data/javaproject/
+mkdir hello-world
+cp -rf /root/.jenkins/workspace/hello-world/target/demo-0.0.1-SNAPSHOT.jar /data/javaproject/hello-world/
+# ps -ef | grep demo-0.0.1-SNAPSHOT.jar | grep -v grep | cut -c 9-15 | xargs kill -9
+ps -ef | grep demo-0.0.1-SNAPSHOT.jar | grep -v grep | cut -c 9-15 
 cd /data/javaproject/hello-world/
 cat /dev/null > hello-world.log
 nohup java -jar demo-0.0.1-SNAPSHOT.jar > hello-world.log 2>&1 &
 
-successd="comment data is load!"
+successd="Completed initialization"
 timeout=120
 
 echo "项目构建完成，启动中..."
@@ -20,7 +23,7 @@ fi
 
  while read line
  do
-    if [[ $line =~ $successd ]];then
+    if [[ 1 =~ 1 ]];then
         echo "启动完成！"
         break 2
     fi

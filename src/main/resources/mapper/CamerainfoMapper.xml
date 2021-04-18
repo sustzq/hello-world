@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.CamerainfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Camerainfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="cameraNum" jdbcType="INTEGER" property="cameranum" />
+    <result column="cameraIP" jdbcType="VARCHAR" property="cameraip" />
+    <result column="cameraPort" jdbcType="INTEGER" property="cameraport" />
+    <result column="cameraUser" jdbcType="VARCHAR" property="camerauser" />
+    <result column="cameraPassword" jdbcType="VARCHAR" property="camerapassword" />
+    <result column="laneNum" jdbcType="INTEGER" property="lanenum" />
+    <result column="pileNum" jdbcType="VARCHAR" property="pilenum" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="pixel" jdbcType="INTEGER" property="pixel" />
+    <result column="resolution" jdbcType="VARCHAR" property="resolution" />
+    <result column="shootPosition" jdbcType="VARCHAR" property="shootposition" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="isonline" jdbcType="VARCHAR" property="isonline" />
+    <result column="master" jdbcType="INTEGER" property="master" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, cameraNum, cameraIP, cameraPort, cameraUser, cameraPassword, laneNum, pileNum, 
+    brand, pixel, resolution, shootPosition, status, isonline, master
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cameraInfo
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from cameraInfo
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.Camerainfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cameraInfo (cameraNum, cameraIP, cameraPort, 
+      cameraUser, cameraPassword, laneNum, 
+      pileNum, brand, pixel, 
+      resolution, shootPosition, status, 
+      isonline, master)
+    values (#{cameranum,jdbcType=INTEGER}, #{cameraip,jdbcType=VARCHAR}, #{cameraport,jdbcType=INTEGER}, 
+      #{camerauser,jdbcType=VARCHAR}, #{camerapassword,jdbcType=VARCHAR}, #{lanenum,jdbcType=INTEGER}, 
+      #{pilenum,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, #{pixel,jdbcType=INTEGER}, 
+      #{resolution,jdbcType=VARCHAR}, #{shootposition,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{isonline,jdbcType=VARCHAR}, #{master,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.Camerainfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cameraInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cameranum != null">
+        cameraNum,
+      </if>
+      <if test="cameraip != null">
+        cameraIP,
+      </if>
+      <if test="cameraport != null">
+        cameraPort,
+      </if>
+      <if test="camerauser != null">
+        cameraUser,
+      </if>
+      <if test="camerapassword != null">
+        cameraPassword,
+      </if>
+      <if test="lanenum != null">
+        laneNum,
+      </if>
+      <if test="pilenum != null">
+        pileNum,
+      </if>
+      <if test="brand != null">
+        brand,
+      </if>
+      <if test="pixel != null">
+        pixel,
+      </if>
+      <if test="resolution != null">
+        resolution,
+      </if>
+      <if test="shootposition != null">
+        shootPosition,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="isonline != null">
+        isonline,
+      </if>
+      <if test="master != null">
+        master,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cameranum != null">
+        #{cameranum,jdbcType=INTEGER},
+      </if>
+      <if test="cameraip != null">
+        #{cameraip,jdbcType=VARCHAR},
+      </if>
+      <if test="cameraport != null">
+        #{cameraport,jdbcType=INTEGER},
+      </if>
+      <if test="camerauser != null">
+        #{camerauser,jdbcType=VARCHAR},
+      </if>
+      <if test="camerapassword != null">
+        #{camerapassword,jdbcType=VARCHAR},
+      </if>
+      <if test="lanenum != null">
+        #{lanenum,jdbcType=INTEGER},
+      </if>
+      <if test="pilenum != null">
+        #{pilenum,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="pixel != null">
+        #{pixel,jdbcType=INTEGER},
+      </if>
+      <if test="resolution != null">
+        #{resolution,jdbcType=VARCHAR},
+      </if>
+      <if test="shootposition != null">
+        #{shootposition,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="isonline != null">
+        #{isonline,jdbcType=VARCHAR},
+      </if>
+      <if test="master != null">
+        #{master,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.Camerainfo">
+    update cameraInfo
+    <set>
+      <if test="cameranum != null">
+        cameraNum = #{cameranum,jdbcType=INTEGER},
+      </if>
+      <if test="cameraip != null">
+        cameraIP = #{cameraip,jdbcType=VARCHAR},
+      </if>
+      <if test="cameraport != null">
+        cameraPort = #{cameraport,jdbcType=INTEGER},
+      </if>
+      <if test="camerauser != null">
+        cameraUser = #{camerauser,jdbcType=VARCHAR},
+      </if>
+      <if test="camerapassword != null">
+        cameraPassword = #{camerapassword,jdbcType=VARCHAR},
+      </if>
+      <if test="lanenum != null">
+        laneNum = #{lanenum,jdbcType=INTEGER},
+      </if>
+      <if test="pilenum != null">
+        pileNum = #{pilenum,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="pixel != null">
+        pixel = #{pixel,jdbcType=INTEGER},
+      </if>
+      <if test="resolution != null">
+        resolution = #{resolution,jdbcType=VARCHAR},
+      </if>
+      <if test="shootposition != null">
+        shootPosition = #{shootposition,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="isonline != null">
+        isonline = #{isonline,jdbcType=VARCHAR},
+      </if>
+      <if test="master != null">
+        master = #{master,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Camerainfo">
+    update cameraInfo
+    set cameraNum = #{cameranum,jdbcType=INTEGER},
+      cameraIP = #{cameraip,jdbcType=VARCHAR},
+      cameraPort = #{cameraport,jdbcType=INTEGER},
+      cameraUser = #{camerauser,jdbcType=VARCHAR},
+      cameraPassword = #{camerapassword,jdbcType=VARCHAR},
+      laneNum = #{lanenum,jdbcType=INTEGER},
+      pileNum = #{pilenum,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      pixel = #{pixel,jdbcType=INTEGER},
+      resolution = #{resolution,jdbcType=VARCHAR},
+      shootPosition = #{shootposition,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      isonline = #{isonline,jdbcType=VARCHAR},
+      master = #{master,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="base_query">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != id">
+         and t.id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="null != cameranum">
+         and t.cameraNum = #{cameranum,jdbcType=INTEGER}
+      </if>
+      <if test="null != cameraip">
+         and t.cameraIP = #{cameraip,jdbcType=VARCHAR}
+      </if>
+      <if test="null != cameraport">
+         and t.cameraPort = #{cameraport,jdbcType=INTEGER}
+      </if>
+      <if test="null != camerauser">
+         and t.cameraUser = #{camerauser,jdbcType=VARCHAR}
+      </if>
+      <if test="null != camerapassword">
+         and t.cameraPassword = #{camerapassword,jdbcType=VARCHAR}
+      </if>
+      <if test="null != lanenum">
+         and t.laneNum = #{lanenum,jdbcType=INTEGER}
+      </if>
+      <if test="null != pilenum">
+         and t.pileNum = #{pilenum,jdbcType=VARCHAR}
+      </if>
+      <if test="null != brand">
+         and t.brand = #{brand,jdbcType=VARCHAR}
+      </if>
+      <if test="null != pixel">
+         and t.pixel = #{pixel,jdbcType=INTEGER}
+      </if>
+      <if test="null != resolution">
+         and t.resolution = #{resolution,jdbcType=VARCHAR}
+      </if>
+      <if test="null != shootposition">
+         and t.shootPosition = #{shootposition,jdbcType=VARCHAR}
+      </if>
+      <if test="null != status">
+         and t.status = #{status,jdbcType=VARCHAR}
+      </if>
+      <if test="null != isonline">
+         and t.isonline = #{isonline,jdbcType=VARCHAR}
+      </if>
+      <if test="null != master">
+         and t.master = #{master,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.example.demo.entity.Camerainfo" resultMap="BaseResultMap">
+    select t.* from cameraInfo t
+    <include refid="base_query" />
+  </select>
+  <select id="list" parameterType="com.example.demo.entity.Camerainfo" resultMap="BaseResultMap">
+    select t.* from cameraInfo t
+    <include refid="base_query" />
+  </select>
+  <select id="pageList" parameterType="com.example.demo.entity.Camerainfo" resultMap="BaseResultMap">
+    select t.* from cameraInfo t
+    <include refid="base_query" />
+  </select>
+</mapper>
