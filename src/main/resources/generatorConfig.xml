@@ -5,6 +5,7 @@
 <!-- 配置生成器 -->
 <generatorConfiguration>
   <context id="DB2Tables" targetRuntime="MyBatis3">
+    <!--使用自定义，需要使用MybatisGenerator.java运行，默认的直接用maven运行 mybatis-generator:generate -e -->
     <plugin type="org.support.generator.CustomPlugin"/>
     <commentGenerator>
       <property name="suppressDate" value="true"/>
